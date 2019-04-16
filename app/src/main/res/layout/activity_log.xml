@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LogActivity"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:textSize="20dp"
+        android:text="User ID"
+        android:textColor="#000000"/>
+
+    <EditText
+        android:id="@+id/idTxt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="Write here your User ID"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:textSize="20dp"
+        android:text="Password"
+        android:textColor="#000000"/>
+
+    <EditText
+        android:id="@+id/pswTxt"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:inputType="textPassword"
+        android:hint="Password"/>
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="20dp" />
+
+    <Button
+        android:id="@+id/logBtn"
+        android:layout_width="300sp"
+        android:layout_height="60sp"
+        android:backgroundTint="@color/colorPrimary"
+        android:layout_gravity="center"
+        android:text="Log in"
+        android:background="@drawable/rounded_button" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="30dp" />
+
+    <Button
+        android:id="@+id/infoBtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center"
+        android:background="@android:drawable/ic_menu_info_details" />
+
+
+</LinearLayout>

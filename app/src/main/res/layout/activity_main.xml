@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/minTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="140dp"
+            android:layout_marginEnd="8dp"
+            android:text="Chiamate"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toStartOf="@+id/callProgress"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dataTxt" />
+
+        <TextView
+            android:id="@+id/smsTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="140dp"
+            android:layout_marginEnd="8dp"
+            android:text="SMS"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toStartOf="@+id/smsProgress"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/minTxt" />
+
+        <TextView
+            android:id="@+id/mmsTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="140dp"
+            android:layout_marginEnd="8dp"
+            android:text="MMS"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toStartOf="@+id/mmsProgress"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/smsTxt" />
+
+        <TextView
+            android:id="@+id/mmsString"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/mmsProgress"
+            app:layout_constraintEnd_toEndOf="@+id/mmsProgress"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/mmsProgress"
+            app:layout_constraintTop_toTopOf="@+id/mmsProgress"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <ProgressBar
+            android:id="@+id/mmsProgress"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:progress="50"
+            android:progressDrawable="@drawable/circle"
+            android:progressTint="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.876"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/smsProgress" />
+
+        <TextView
+            android:id="@+id/smsString"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/smsProgress"
+            app:layout_constraintEnd_toEndOf="@+id/smsProgress"
+            app:layout_constraintHorizontal_bias="0.50"
+            app:layout_constraintStart_toStartOf="@+id/smsProgress"
+            app:layout_constraintTop_toTopOf="@+id/smsProgress"
+            app:layout_constraintVertical_bias="0.50" />
+
+        <ProgressBar
+            android:id="@+id/smsProgress"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:progress="50"
+            android:progressDrawable="@drawable/circle"
+            android:progressTint="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.876"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/callProgress" />
+
+        <ProgressBar
+            android:id="@+id/dataProgress"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:progress="90"
+            android:progressDrawable="@drawable/circle"
+            android:progressTint="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.876"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/creditTxt" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="80dp"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="@android:color/black"
+            android:backgroundTint="@android:color/black"
+            app:layout_constraintEnd_toEndOf="@+id/dataProgress"
+            app:layout_constraintHorizontal_bias="0.525"
+            app:layout_constraintStart_toStartOf="@+id/dataProgress"
+            app:layout_constraintTop_toBottomOf="@+id/dataString">
+
+        </View>
+
+        <TextView
+            android:id="@+id/dataMaxString"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="24dp"
+            android:text="0"
+            android:textSize="25dp"
+            app:layout_constraintBottom_toBottomOf="@+id/dataProgress"
+            app:layout_constraintEnd_toEndOf="@+id/dataProgress"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="@+id/dataProgress"
+            app:layout_constraintTop_toBottomOf="@+id/view"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/dataUsageTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="Usati:"
+            android:textSize="15dp"
+            app:layout_constraintEnd_toEndOf="@+id/dataProgress"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="@+id/dataProgress"
+            app:layout_constraintTop_toTopOf="@+id/dataProgress" />
+
+        <TextView
+            android:id="@+id/dataString"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="25dp"
+            app:layout_constraintEnd_toEndOf="@+id/dataProgress"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="@+id/dataProgress"
+            app:layout_constraintTop_toBottomOf="@+id/dataUsageTxt" />
+
+        <ProgressBar
+            android:id="@+id/callProgress"
+            style="?android:progressBarStyleHorizontal"
+            android:layout_width="160dp"
+            android:layout_height="160dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:progress="50"
+            android:progressDrawable="@drawable/circle"
+            android:progressTint="@color/colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.876"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/dataProgress" />
+
+        <TextView
+            android:id="@+id/callString"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/callProgress"
+            app:layout_constraintEnd_toEndOf="@+id/callProgress"
+            app:layout_constraintHorizontal_bias="0.50"
+            app:layout_constraintStart_toStartOf="@+id/callProgress"
+            app:layout_constraintTop_toTopOf="@+id/callProgress"
+            app:layout_constraintVertical_bias="0.5" />
+
+        <TextView
+            android:id="@+id/dataTxt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="72dp"
+            android:layout_marginEnd="8dp"
+            android:text="Dati Mobili"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toStartOf="@+id/dataProgress"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/creditTxt" />
+
+        <Button
+            android:id="@+id/resetBtn"
+            android:layout_width="300sp"
+            android:layout_height="60sp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="20dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:gravity="center"
+            android:text="Log out"
+            android:background="@drawable/rounded_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mmsProgress" />
+
+        <TextView
+            android:id="@+id/creditTxt"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="28dp"
+            android:layout_marginEnd="8dp"
+            android:text="Credito: 0,00€"
+            android:textAlignment="center"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+
+
+</ScrollView>
