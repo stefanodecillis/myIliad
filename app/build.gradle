@@ -6,7 +6,7 @@ android {
         applicationId "com.phone.step.myiliad"
         minSdkVersion 24
         targetSdkVersion 28
-        versionCode 3
+        versionCode 6
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -28,5 +28,6 @@ dependencies {
     implementation 'org.jsoup:jsoup:1.11.3'
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    implementation 'com.google.code.gson:gson:2.8.2'
 
 }

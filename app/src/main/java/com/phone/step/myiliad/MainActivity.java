@@ -4,22 +4,24 @@ package com.phone.step.myiliad;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import java.io.IOException;
 import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.dataProgress)
+    @BindView(R.id.dataProg)
     ProgressBar dataProgress = null;
     @BindView(R.id.dataString)
     TextView dataString = null;
@@ -39,6 +41,8 @@ public class MainActivity extends AppCompatActivity {
     TextView mmsString = null;
     @BindView(R.id.creditTxt)
     TextView creditString = null;
+    @BindView(R.id.renewalTxt)
+    TextView renewalString = null;
 
     @BindView(R.id.resetBtn)
     Button resetBtn = null;
@@ -55,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
             if(IliadService.checkIliadService()){
                 Log.d("DEBUG", "website is reachable");
             } else {
-                creditString.setText("Iliad service is not available. Try later");
+                creditString.setText("Service is not available. Try later");
+                creditString.setTextSize(10);
                 creditString.setTextColor(Color.RED);
                 status = false;
             }
@@ -66,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        SharedPreferences.Editor editor = pref.edit();
+        //SharedPreferences.Editor editor = pref.edit();
 
         if(pref.getString(Constants.ID_KEY, null) != null){
             Log.d("DEBUG", "userID: " + pref.getString(Constants.ID_KEY, null));
@@ -75,8 +80,13 @@ public class MainActivity extends AppCompatActivity {
         if(pref.getString(Constants.ID_KEY, null) == null ||pref.getString(Constants.PSW_KEY, null) == null){
             showLogin();
         } else {
-            if(status)
-            runIliad();
+            if(status) {
+                try {
+                    runIliad();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
 
         resetBtn.setOnClickListener(new View.OnClickListener() {
@@ -88,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void runIliad(){
+    private void runIliad() throws IOException {
         Thread thread = new Thread(){
             @Override
             public void run() {
@@ -106,18 +116,19 @@ public class MainActivity extends AppCompatActivity {
         };
 
         thread.start();
-        while(thread.isAlive()){
-            android.os.SystemClock.sleep(20);
+        while(thread.isAlive() && UserHandler.getInstance().getUserData() == null){
+            android.os.SystemClock.sleep(5);
         }
         if(UserHandler.getInstance().getUserData() == null){
             Log.d("DEBUG", "user data is null");
-            creditString.setText("Iliad service is not available. Try later");
+            creditString.setText("Service is not available");
+            creditString.setTextSize(15);
             creditString.setTextColor(Color.RED);
         } else
         initUI();
     }
 
-    private void initUI (){
+    private void initUI () throws IOException {
         Map<String,String> data = UserHandler.getInstance().getUserData();
         String dataUsage = data.get("dataUsage");
         String dataMax = data.get("dataMax");
@@ -128,9 +139,14 @@ public class MainActivity extends AppCompatActivity {
         dataString.setText(dataUsage);
         creditString.setText(Constants.CREDIT_TXT.replace("X", data.get("credit")));
         dataMaxString.setText(dataMax);
-        Double usage = dataConvert(dataUsage);
-        Double max = dataConvert(dataMax);
-        Double rest = (usage/max)*100;
+        Double usage = Utils.dataConvert(dataUsage);
+        Double max = Utils.dataConvert(dataMax);
+        Double rest = null;
+        if(usage == -1 || max == -1){
+            Utils.showMessage(getApplicationContext(), "Per favore, riporta questo bug allo sviluppatore");
+            rest = Double.valueOf(100);
+        } else
+            rest = (usage/max)*100;
         Log.d("INFO", "usage: "+ usage + " max: " + max + " rest: " + rest);
         int dataPerc = 100 -  rest.intValue();
         Log.d("INFO", String.valueOf(dataPerc*100));
@@ -152,6 +168,13 @@ public class MainActivity extends AppCompatActivity {
         //mms
         mmsProgress.setProgress(100);
         mmsString.setText(data.get("mmsNum"));
+
+        //renewal
+        if(data.get("renewal") != null)
+            renewalString.setText(data.get("renewal"));
+        else
+            renewalString.setText("");
+
     }
 
     private void showLogin(){
@@ -173,20 +196,5 @@ public class MainActivity extends AppCompatActivity {
 
         showLogin();
     }
-
-    private Double dataConvert(String data){
-        String numStr = data.replaceAll("GB", "").replaceAll("MB","").replaceAll(",",".");
-        Double num = Double.valueOf(numStr);
-        if(data.contains("GB")){
-            num= num*1000000000;
-        } else if (data.contains("MB")){
-            num= num*1000000;
-        } else {
-            Log.d("ERROR", "wtf  --> " + data);
-        }
-
-        return num;
-    }
-
 
 }

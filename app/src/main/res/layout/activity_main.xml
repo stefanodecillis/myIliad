@@ -112,7 +112,7 @@
             app:layout_constraintTop_toBottomOf="@+id/callProgress" />
 
         <ProgressBar
-            android:id="@+id/dataProgress"
+            android:id="@+id/dataProg"
             style="?android:progressBarStyleHorizontal"
             android:layout_width="160dp"
             android:layout_height="160dp"
@@ -134,9 +134,9 @@
             android:layout_marginTop="4dp"
             android:background="@android:color/black"
             android:backgroundTint="@android:color/black"
-            app:layout_constraintEnd_toEndOf="@+id/dataProgress"
+            app:layout_constraintEnd_toEndOf="@+id/dataProg"
             app:layout_constraintHorizontal_bias="0.525"
-            app:layout_constraintStart_toStartOf="@+id/dataProgress"
+            app:layout_constraintStart_toStartOf="@+id/dataProg"
             app:layout_constraintTop_toBottomOf="@+id/dataString">
 
         </View>
@@ -149,10 +149,10 @@
             android:layout_marginBottom="24dp"
             android:text="0"
             android:textSize="25dp"
-            app:layout_constraintBottom_toBottomOf="@+id/dataProgress"
-            app:layout_constraintEnd_toEndOf="@+id/dataProgress"
+            app:layout_constraintBottom_toBottomOf="@+id/dataProg"
+            app:layout_constraintEnd_toEndOf="@+id/dataProg"
             app:layout_constraintHorizontal_bias="0.503"
-            app:layout_constraintStart_toStartOf="@+id/dataProgress"
+            app:layout_constraintStart_toStartOf="@+id/dataProg"
             app:layout_constraintTop_toBottomOf="@+id/view"
             app:layout_constraintVertical_bias="0.0" />
 
@@ -163,10 +163,10 @@
             android:layout_marginTop="32dp"
             android:text="Usati:"
             android:textSize="15dp"
-            app:layout_constraintEnd_toEndOf="@+id/dataProgress"
+            app:layout_constraintEnd_toEndOf="@+id/dataProg"
             app:layout_constraintHorizontal_bias="0.503"
-            app:layout_constraintStart_toStartOf="@+id/dataProgress"
-            app:layout_constraintTop_toTopOf="@+id/dataProgress" />
+            app:layout_constraintStart_toStartOf="@+id/dataProg"
+            app:layout_constraintTop_toTopOf="@+id/dataProg" />
 
         <TextView
             android:id="@+id/dataString"
@@ -174,9 +174,9 @@
             android:layout_height="wrap_content"
             android:text="0"
             android:textSize="25dp"
-            app:layout_constraintEnd_toEndOf="@+id/dataProgress"
+            app:layout_constraintEnd_toEndOf="@+id/dataProg"
             app:layout_constraintHorizontal_bias="0.503"
-            app:layout_constraintStart_toStartOf="@+id/dataProgress"
+            app:layout_constraintStart_toStartOf="@+id/dataProg"
             app:layout_constraintTop_toBottomOf="@+id/dataUsageTxt" />
 
         <ProgressBar
@@ -193,7 +193,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.876"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/dataProgress" />
+            app:layout_constraintTop_toBottomOf="@+id/dataProg" />
 
         <TextView
             android:id="@+id/callString"
@@ -217,7 +217,7 @@
             android:layout_marginEnd="8dp"
             android:text="Dati Mobili"
             android:textSize="30dp"
-            app:layout_constraintEnd_toStartOf="@+id/dataProgress"
+            app:layout_constraintEnd_toStartOf="@+id/dataProg"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/creditTxt" />
@@ -227,31 +227,54 @@
             android:layout_width="300sp"
             android:layout_height="60sp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:background="@mipmap/logout_btn"
             android:gravity="center"
-            android:text="Log out"
-            android:background="@drawable/rounded_button"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/renewalTxt"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/creditTxt"
+            android:layout_width="212dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="36dp"
+            android:layout_marginEnd="10dp"
+            android:text="Credito: 0,00€"
+            android:textAlignment="center"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.DialogWindowTitle"
+            android:textSize="30dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/renewalTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="8dp"
+            android:text="L'offerta scade ---"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/mmsProgress" />
 
-        <TextView
-            android:id="@+id/creditTxt"
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="28dp"
+        <ImageView
+            android:id="@+id/wavesImg"
+            android:layout_width="162dp"
+            android:layout_height="144dp"
             android:layout_marginEnd="8dp"
-            android:text="Credito: 0,00€"
-            android:textAlignment="center"
-            android:textSize="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:scaleType="fitStart"
+            app:layout_constraintBottom_toTopOf="@+id/dataTxt"
+            app:layout_constraintEnd_toStartOf="@+id/creditTxt"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/wall_main" />
 
     </android.support.constraint.ConstraintLayout>
 

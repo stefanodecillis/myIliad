@@ -5,6 +5,7 @@ public class Constants {
     static final public String iliadWeb = "https://www.iliad.it/account/";
     static final public String payload = "login-ident=%%&login-pwd=££";
     static final public String cookieSession = "ACCOUNT_SESSID=YYY; RGPD=-1";
+    static final public String reportAddress = "";
 
     static final public String ID_KEY = "userID";
     static final public String PSW_KEY = "userPsw";

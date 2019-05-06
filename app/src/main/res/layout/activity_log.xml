@@ -40,12 +40,10 @@
 
     <Button
         android:id="@+id/logBtn"
-        android:layout_width="300sp"
-        android:layout_height="60sp"
-        android:backgroundTint="@color/colorPrimary"
+        android:layout_width="320sp"
+        android:layout_height="63sp"
         android:layout_gravity="center"
-        android:text="Log in"
-        android:background="@drawable/rounded_button" />
+        android:background="@mipmap/login_btn" />
 
     <Space
         android:layout_width="wrap_content"
@@ -53,10 +51,20 @@
 
     <Button
         android:id="@+id/infoBtn"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:layout_gravity="center"
-        android:background="@android:drawable/ic_menu_info_details" />
+        android:background="@mipmap/info_btn" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:srcCompat="@mipmap/wall_log" />
 
 
 </LinearLayout>

@@ -1,0 +1,38 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/widget_margin">
+
+    <ProgressBar
+        android:id="@+id/dataProg"
+        style="?android:progressBarStyleHorizontal"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:progress="99"
+        android:progressDrawable="@drawable/circle"
+        android:progressTint="@color/colorPrimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dataRemainTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dataProg"
+        android:layout_alignTop="@+id/dataProg"
+        android:layout_alignEnd="@+id/dataProg"
+        android:layout_alignBottom="@+id/dataProg"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginBottom="50dp"
+        android:text="50GB"
+        android:textColor="@color/colorPrimary"
+        android:textAlignment="center"
+        android:textSize="22dp" />
+
+
+</RelativeLayout>

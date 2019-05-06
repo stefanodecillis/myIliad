@@ -1,11 +1,13 @@
 package com.phone.step.myiliad;
 
 import android.util.Log;
+
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -40,12 +42,32 @@ public class IliadService {
                 .execute();
         Document doc = response.parse();
         Elements elements = doc.body().getElementsByClass("conso-infos conso-local");
-        Element dataContainer = elements.get(0);
+        Element dataContainer = null;
+        try {
+            dataContainer = elements.get(0);
+        } catch (IndexOutOfBoundsException e){
+            Utils.sendDebug(doc.body().toString(), "indexOutOfBound");
+            e.printStackTrace();
+            return null;
+        }
         elements = dataContainer.getElementsByClass("conso__text");
         Map<String,String> data = getInternetData(elements);
+        if ((!data.get("dataUsage").contains("GB") && !data.get("dataUsage").contains("MB")) || (!data.get("dataMax").contains("GB") && !data.get("dataMax").contains("MB"))){
+            Log.d("NEW", "Data is worthless");
+            Utils.sendDebug(doc.body().toString(),"data mobile not found");
+        }
         data.putAll(getVoiceMessages(elements));
         data.putAll(getCredit(doc));
+        data.putAll(getRenewal(doc));
 
+        return data;
+    }
+
+    private static Map<String,String> getRenewal(Document doc){
+        Elements elements = doc.body().getElementsByClass("end_offerta");
+        String renewal = elements.get(0).text();
+        Map<String,String> data = new HashMap<>();
+        data.put("renewal", renewal);
         return data;
     }
 
@@ -95,7 +117,9 @@ public class IliadService {
 
     private static Map<String,String> getVoiceMessages(Elements elements) {
 
-        //use it to check if the div is the right one
+        /**
+         * use it to check if the div is the right one
+         */
         /*for (Element element : elements){
             Log.d("NEW", element.text());
         }*/
@@ -124,7 +148,7 @@ public class IliadService {
         return data;
     }
 
-    public static boolean doLog(String id, String psw) throws IOException {
+    public static boolean doLog(String id, String psw){
 
         UserHandler.getInstance().setId(id);
         UserHandler.getInstance().setPsw(psw);
@@ -139,7 +163,21 @@ public class IliadService {
                 try {
                     doc = connection.execute().parse();
                 } catch (IOException e) {
+                    try {
+                        if (doc == null) {
+                            Utils.sendDebug("", "doc null");
+                        } else {
+                            Utils.sendDebug(e.getMessage(), "doc null");
+                        }
+                    }
+                    catch(IOException e1){
+                        e1.printStackTrace();
+                    }
                     e.printStackTrace();
+                }
+                if(doc == null) {
+                    UserHandler.getInstance().setStatus(false);
+                    return;
                 }
                 Log.d("DEBUG","id body: " + doc.body().id());
 
@@ -165,11 +203,17 @@ public class IliadService {
 
         Runtime runtime = Runtime.getRuntime();
         Process proc = runtime.exec(Constants.CURL_SITE); //<- Try ping -c 1 www.serverURL.com
-        proc.waitFor();
-        Log.d("NEW", "Accessibility iliad is:  " + proc.exitValue());
-        if(proc.exitValue() == 2)
+        try {
+            proc.waitFor();
+            Log.d("NEW", "Accessibility iliad is:  " + proc.exitValue());
+            if(proc.exitValue() == 2)
+                return true;
+            else
+                return false;
+        } catch (IllegalThreadStateException e){
+            e.printStackTrace();
+            Log.d("DEBUG", "IllegalThreadState exception catched. Returning true (hope it will be check later)");
             return true;
-        else
-            return false;
+        }
     }
 }
