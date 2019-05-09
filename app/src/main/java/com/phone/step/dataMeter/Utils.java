@@ -1,14 +1,11 @@
-package com.phone.step.myiliad;
+package com.phone.step.dataMeter;
 
 import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.phone.step.myiliad.Entity.Report;
-
-import org.jsoup.Connection;
-import org.jsoup.Jsoup;
+import com.phone.step.dataMeter.Entity.Report;
 
 import java.io.IOException;
 
@@ -23,10 +20,10 @@ public class Utils {
         Gson gson = new Gson();
         Report report = new Report(body, detail);
         String msg = gson.toJson(report);
-        Connection connection = Jsoup.connect(Constants.reportAddress)
+        /*Connection connection = Jsoup.connect(Constants.reportAddress)
                 .method(Connection.Method.POST)
                 .requestBody(msg);
-        connection.execute();
+        connection.execute();*/
     }
 
     public static  Double dataConvert(String data) throws IOException {

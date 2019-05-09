@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.phone.step.myiliad">
+    package="com.phone.step.dataMeter">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <receiver android:name=".CallWidget"
+        <receiver android:name="com.phone.step.dataMeter.CallWidget"
                     android:label="Voice">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -22,7 +22,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/call_widget_info" />
         </receiver>
-        <receiver android:name=".dataWidget"
+        <receiver android:name="com.phone.step.dataMeter.dataWidget"
             android:label="Data">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -33,9 +33,9 @@
                 android:resource="@xml/data_widget_info" />
         </receiver>
 
-        <activity android:name=".LogActivity" />
+        <activity android:name="com.phone.step.dataMeter.LogActivity" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.phone.step.dataMeter.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

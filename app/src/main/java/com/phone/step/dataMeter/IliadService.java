@@ -1,4 +1,4 @@
-package com.phone.step.myiliad;
+package com.phone.step.dataMeter;
 
 import android.util.Log;
 
@@ -46,7 +46,7 @@ public class IliadService {
         try {
             dataContainer = elements.get(0);
         } catch (IndexOutOfBoundsException e){
-            Utils.sendDebug(doc.body().toString(), "indexOutOfBound");
+            Utils.sendDebug(e.getStackTrace().toString(), "indexOutOfBound");
             e.printStackTrace();
             return null;
         }
